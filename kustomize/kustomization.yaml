@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+commonLabels:
+  app: wordpress
+commonAnnotations:
+  maintainer: mglynn@amazon.com
+namePrefix: kustomize-
+namespace: wordpress-kustomize
+
+configMapGenerator:
+- name: wordpress-config
+  files:
+  - wordpress.properties
+secretGenerator:
+- name: wordpress-db-secret
+  files:
+  - wordpress.passwords
+resources:
+- wordpress-mysql-deployment.yaml
+- wordpress-mysql-svc.yaml
+- wordpress-mysql-pvc.yaml
+- wordpress-deployment.yaml
+- wordpress-svc.yaml
