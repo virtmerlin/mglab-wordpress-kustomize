@@ -1,5 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+
 commonLabels:
   app: wordpress
 commonAnnotations:
@@ -9,13 +10,14 @@ namespace: wordpress-kustomize
 
 configMapGenerator:
 - name: wordpress-config
-  files:
-  - wordpress.properties
+  literals:
+  - database=wordpress
 secretGenerator:
 - name: wordpress-db-secret
   literals:
   - password=mypasswd
   - username=myuser
+
 resources:
 - wordpress-mysql-deployment.yaml
 - wordpress-mysql-svc.yaml
