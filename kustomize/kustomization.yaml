@@ -13,8 +13,9 @@ configMapGenerator:
   - wordpress.properties
 secretGenerator:
 - name: wordpress-db-secret
-  files:
-  - wordpress.passwords
+  literals:
+  - password=mypasswd
+  - username=myuser
 resources:
 - wordpress-mysql-deployment.yaml
 - wordpress-mysql-svc.yaml
