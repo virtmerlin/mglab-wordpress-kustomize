@@ -18,7 +18,7 @@ spec:
         tier: frontend
     spec:
       containers:
-      - image: 987210092513.dkr.ecr.us-east-1.amazonaws.com/mglab-wordpress-kustomize-argocd:893f6248
+      - image: 987210092513.dkr.ecr.us-east-1.amazonaws.com/mglab-wordpress-kustomize-argocd:a9106079
         name: wordpress
         env:
         - name: WORDPRESS_DB_HOST
