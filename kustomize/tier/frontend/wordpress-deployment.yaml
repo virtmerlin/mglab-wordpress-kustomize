@@ -22,7 +22,7 @@ spec:
         name: wordpress
         env:
         - name: WORDPRESS_DB_HOST
-          value: kustomize-wordpress-mysql
+          value: $(MYSQL_WORDPRESS_DB_HOST)
         - name: WORDPRESS_DB_PASSWORD
           valueFrom:
             secretKeyRef:

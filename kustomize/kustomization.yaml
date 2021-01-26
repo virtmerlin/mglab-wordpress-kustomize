@@ -3,24 +3,21 @@ kind: Kustomization
 
 commonLabels:
   app: wordpress
+
 commonAnnotations:
   maintainer: mglynn@amazon.com
 namePrefix: kustomize-
 namespace: wordpress-kustomize
 
-configMapGenerator:
-- name: wordpress-config
-  literals:
-  - database=wordpress
-secretGenerator:
-- name: wordpress-db-secret
-  literals:
-  - password=mypasswd
-  - username=myuser
+vars:
+  - name: MYSQL_WORDPRESS_DB_HOST
+    objref:
+      kind: Service
+      name: wordpress-mysql
+      apiVersion: v1
+    fieldref:
+      fieldpath: metadata.name
 
 resources:
-- wordpress-mysql-deployment.yaml
-- wordpress-mysql-svc.yaml
-- wordpress-mysql-pvc.yaml
-- wordpress-deployment.yaml
-- wordpress-svc.yaml
+- ./tier/mysql
+- ./tier/frontend

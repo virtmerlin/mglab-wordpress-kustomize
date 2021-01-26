@@ -3,15 +3,10 @@ kind: Deployment
 metadata:
   name: wordpress-mysql
 spec:
-  selector:
-    matchLabels:
-      tier: mysql
   strategy:
     type: Recreate
   template:
     metadata:
-      labels:
-        tier: mysql
     spec:
       containers:
       - image: public.ecr.aws/u3e9a9s8/eks-demo-mysql:5.6
